@@ -1,0 +1,26 @@
+<div class="text-center mat-bg-primary pt-1 pb-1">
+  <h6 class="m-0">Notifications</h6>
+</div>
+<div class="text-center mt-1" *ngIf="notifications?.length>0">
+  <small><a href="#" (click)="clearAll($event)">Clear all notifications</a></small>
+</div>
+<div [style.height.px]="divHeight">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <!-- <mat-spinner  style="margin-top: 150px;"></mat-spinner> -->
+  <mat-nav-list class="notification-list" role="list">
+    <!-- Notification item -->
+    <mat-list-item *ngFor="let n of notifications" class="notific-item" role="listitem" routerLinkActive="open"
+      style="height:fit-content; margin-top: 5px; margin-bottom: 5px;">
+      <div style="display: flex; margin-bottom: 3px;">
+        <mat-icon [color]="n.Color" class="notific-icon mr-1">{{n.Icon}}</mat-icon>
+        <a [routerLink]="[n.Route || '/dashboard']">
+          <div class="mat-list-text">
+            <h4 class="message" [ngStyle]="{'font-weight': n.IsRead ? '400' : '600' }">{{n.Message}}</h4>
+            <small class="time text-muted">{{n.MessageTime}}</small>
+          </div>
+        </a>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-nav-list>
+</div>

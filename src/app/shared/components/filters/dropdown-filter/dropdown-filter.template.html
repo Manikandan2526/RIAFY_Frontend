@@ -1,0 +1,26 @@
+<div fxLayout="row wrap" class="" style="width: 100%;">
+  <div fxFlex="100" style="border-radius: 5px;">
+    <div fxLayout="row wrap">
+      <div fxFlex="90" style="padding-left: 5px; cursor: pointer;" (click)="FilterButtonsClick()">
+        {{title}} </div>
+      <div fxFlex="10" style="text-align: right;">
+        <mat-icon (click)="ClearFilter()" style="transform: scale(.75); cursor: pointer;">
+          {{iconFilter}}</mat-icon>
+      </div>
+      <div fxFlex="100" class="full-width mat-bg-primary" (click)="FilterButtonsClick()"
+        style="font-size: 12px; height: 24px; padding-top:3px; text-align: center; cursor: pointer;">
+        {{selectedValue}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="canShowFilterOptions"
+    style="position: absolute; overflow: auto; width: 400px; margin: 50px 0 0 -8px; z-index: 2;">
+     <mat-card class="card" style="padding: 0px !important">
+      <mat-card-content>
+          <div *ngFor="let row of rows" class="full-width">
+            <button mat-menu-item type="button" (click)="onOptionChange(row)">{{ row[displayField] }}</button>
+          </div>
+      </mat-card-content>
+    </mat-card> 
+  </div>
+</div>

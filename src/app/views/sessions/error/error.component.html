@@ -1,0 +1,22 @@
+<div class="page-wrap height-100 default-bg">
+  <div class="app-error-main">
+    <div class="fix app-error">
+      <mat-icon class="error-icon" color="warn">warning</mat-icon>
+      <div class="error-text">
+        <h1 class="error-title">500</h1>
+        <div class="error-subtitle">Server Error!</div>
+      </div>
+    </div>
+    <div style="font-size: smaller; margin-top: 20px; margin-bottom: 20px; width: 100%;">{{ "{ " + ((errorHandlerService.errorMessage ==  '') ? 'Error: Unknown error!' :  errorHandlerService.errorMessage) + " }" }}</div>
+    <div class="error-actions fix app-error">
+      <button style="width: 250px;"
+      mat-raised-button 
+      color="primary"
+      class="mb-1 mr-05"
+      [routerLink]="['/']">Back to Login</button>
+      <!-- <button 
+      mat-raised-button 
+      color="warn">Report this Problem</button> -->
+    </div>
+  </div>
+</div>

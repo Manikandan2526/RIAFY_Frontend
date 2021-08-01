@@ -1,0 +1,45 @@
+<div fxLayout="row wrap" style="width: 100%;">
+  <div fxFlex="100">
+    <div fxLayout="row wrap">
+      <div fxFlex="90" style="padding-left: 5px; cursor: pointer;" (click)="FilterButtonsClick()">
+        {{title}} </div>
+      <div fxFlex="10" style="text-align: right;">
+        <mat-icon (click)="ClearFilter()" style="transform: scale(.75); cursor: pointer;">
+          {{iconFilter}}</mat-icon>
+      </div>
+      <div fxFlex="100" class="full-width mat-bg-primary" (click)="FilterButtonsClick();"
+        style="font-size: 12px; height: 24px; padding-top:3px; padding-bottom: 5px; text-align: center; cursor: pointer;">
+        {{selectedValue}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="canShowFilterOptions" [style.width.px]="showSpecific ? 400 : 300"
+    style="position: absolute; overflow: auto; margin: 50px 0 0 -8px; z-index: 2;">
+    <mat-card class="card">
+      <mat-card-content>
+        <div fxLayout="row wrap" *ngIf="!showSpecific">
+          <button mat-raised-button color="primary" class="mat-button-medium" (click)="SetFilter('btnSpecific')">
+            {{"SPECIFIC"|translate}}
+          </button>
+          <button mat-raised-button color="primary" class="mat-button-medium" (click)="SetFilter('btnList')">
+            {{"LIST"|translate}}
+          </button>
+          <button mat-raised-button color="primary" class="mat-button-medium" (click)="SetFilter('btnAll')">
+            {{"ALL"|translate}}
+          </button>
+        </div>
+        <div *ngIf="showSpecific" fxFlex="100" style="margin: -10px 0 -20px 0;">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="" aria-label="" id="txtSpecificFilter" [matAutocomplete]="auto"
+              [formControl]="txtSpecificFilter">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelection($event.option.value)">
+              <mat-option *ngFor="let row of filteredRows | async" [value]="row">
+                <span [innerHTML]="row[searchField] | highLight:toHighlight"></span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

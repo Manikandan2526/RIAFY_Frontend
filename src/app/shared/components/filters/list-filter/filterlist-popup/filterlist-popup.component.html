@@ -1,0 +1,31 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+<div fxLayout="row wrap" fxLayout.lt-sm="column" style="height: 300px;overflow: auto;">
+  <div fxFlex="100" class="full-width">
+    <div fxLayout="row wrap">
+      <div fxFlex="100" class="full-width">
+        <div fxLayout="row wrap">
+          <button mat-raised-button color="primary" class="mat-button-medium"
+            (click)="selectAll()">{{"SELECT"| translate }} {{"ALL"|translate}}</button>
+          <button mat-raised-button color="primary" class="mat-button-medium"
+            (click)="selectNone()">{{"SELECT" | translate }} {{"NONE"|translate}}</button>
+          <span style="margin-left: 5px;margin-top: 8px;font-weight: bold;">{{SelectedItemsList}}</span>
+        </div>
+      </div>
+      <div fxFlex="100" class="full-width" style="margin-top: 10px;">
+        <mat-chip-list multiple>
+          <mat-chip *ngFor="let item of listItems;" [selected]="item.Selected" id="{{item.SelectedBtnItemValue}}"
+            (click)="listBtnClick($event)">
+            {{ item.SelectedBtnItem }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayout.lt-sm="row">
+  <div fxFlex="100" class="mt-1">
+    <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">{{"CANCEL" | translate }}</button>
+    <span fxFlex></span>
+    <button mat-raised-button color="primary" (click)="submit()">{{"SELECT" | translate }}</button>
+  </div>
+</div>

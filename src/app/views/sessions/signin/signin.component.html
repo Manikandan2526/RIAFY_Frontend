@@ -1,0 +1,91 @@
+<div class="page-wrap height-100 black">
+  <div class="session-form-hold">
+    <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+    <mat-card>        
+      <mat-card-content>
+        <div class="text-center pt-8 pb-16">
+
+          <p class="text-muted m-0">Sign in to your account</p>
+        </div>
+        <div *ngIf="cookieLogins.length==0 || selectedLoginEmail.IsValidLoginEmail"> 
+          <form [formGroup]="signinForm">
+            <div class="" *ngIf="!selectedLoginEmail.IsValidLoginEmail">
+              <mat-form-field class="full-width">
+                <input
+                  matInput 
+                  id="txtEmail"
+                  name="LoginEmail"
+                  [formControl]="signinForm.controls['LoginEmail']"
+                  placeholder="UserName"
+                  value="">
+              </mat-form-field>
+            </div>
+            <div class="" *ngIf="selectedLoginEmail.IsValidLoginEmail">
+              <div>
+                <h2 class="text-center">{{ greetingMsg }} {{selectedLoginEmail.DisplayName}} !</h2>              
+                    <mat-list class="compact-list mb-1"> 
+                      <mat-list-item (click)="accLoginClick()">
+                        <img mat-list-avatar class="mr-1" [src]="selectedLoginEmail.DisplayPicturePath" alt="">
+                        <div fxLayout="row" fxFlex="80">
+                          <h4 class="m-0 mr-1">{{selectedLoginEmail.LoginEmail}}</h4>                                          
+                        </div>  
+                        <mat-icon >arrow_drop_down</mat-icon>               
+                      </mat-list-item>
+                    </mat-list>
+                </div>
+              <mat-form-field class="full-width" style="margin-top: 5px;">
+                <input 
+                  id ="txtPassword"
+                  type="password"
+                  name="LoginPassword"
+                  matInput
+                  showHideInput
+                  [formControl]="signinForm.controls['LoginPassword']"
+                  placeholder="Password" 
+                  value="">
+                  <i matSuffix
+                  class="material-icons"
+                  showHideTrigger="txtPassword"
+                  [showHideStatus]="{ materialIcon: true, id: 'txtPassword' }"
+                ></i>
+              </mat-form-field>
+              <!-- <small 
+                *ngIf="signinForm.controls['LoginPassword'].hasError('required') && signinForm.controls['LoginPassword'].touched" 
+                class="form-error-msg"> Password is required </small> -->
+            </div>     
+            <div *ngIf="!selectedLoginEmail.IsValidLoginEmail">   
+              <button mat-raised-button class="mat-primary full-width mb-1 mt-16" [disabled]="signinForm.controls['LoginEmail'].hasError('required')" (click)="validateLoginEmail()">Next</button>
+              <div *ngIf="cookiecount>0" class="text-center">
+              <button mat-button class="full-width " (click)="accLoginClick()">Existing Logins</button>            
+            </div>
+          </div>
+          <div *ngIf="selectedLoginEmail.IsValidLoginEmail">
+            <button mat-raised-button class="mat-primary full-width mb-1 mt-16" [disabled]="signinForm.controls['LoginPassword'].hasError('required')" (click)="signin()" >Sign in</button>
+          </div>
+             
+          </form>
+        </div>
+        <div *ngIf="cookieLogins.length>0 && !selectedLoginEmail.IsValidLoginEmail">
+        <mat-card class="default">
+          <mat-card-title class="text-center">Choose an account</mat-card-title>
+          <mat-card-content class="p-0">
+            <mat-list class="compact-list mb-1">
+              <mat-list-item class="" *ngFor="let item of cookieLogins"  >
+                <img mat-list-avatar class="mr-1" [src]="item.DisplayPicturePath" alt="" (click)="cookieLoginClick(item)">
+                <div fxLayout="row" fxFlex="80" (click)="cookieLoginClick(item)">
+                  <h4 class="m-0 mr-1">{{item.LoginEmail}}</h4>                                          
+                </div>  
+                <mat-icon color='warn' (click)="deleteCookieLogin(item)">delete</mat-icon>               
+              </mat-list-item>
+            </mat-list>
+            <div class="text-center" style="margin-bottom: 10px;">
+              <button mat-button class="full-width" (click)="openAnotherAccount()">Add another accounut</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

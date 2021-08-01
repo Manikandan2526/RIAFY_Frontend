@@ -1,0 +1,279 @@
+$mat-primary: map-get($material-colors, black);
+$mat-accent: map-get($material-colors, white);
+
+$egret-primary: mat-palette($mat-primary);
+$egret-accent:  mat-palette($mat-accent);
+
+// custom theme palettes are passed into a theme function
+$egret-theme: mat-dark-theme($egret-primary, $egret-accent);
+
+$primary-dark: darken( map-get($mat-primary, 500), 8% );
+//$primary-dark: #1b1b1b;
+
+$white: rgba(255,255,255,.8);
+
+// Material theme is wrapped by a parent class
+.megsoft-dark-white {
+    @include angular-material-theme($egret-theme);
+    @import '~@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
+    @include mat-datetimepicker-theme($egret-theme);
+    
+    .mat-drawer-container {
+        background-color: #1a1b1d;
+        color: $white !important;
+    }
+    .mat-table,.mat-select-value,
+    .mat-dialog-container,
+    .mat-card {
+        background-color: #1e2021 !important;
+        color: $white !important;
+    }
+    .mat-card:not([class*='mat-elevation-z']) {
+        box-shadow: 0px 1px 1px -1px rgba(255, 255, 255, 0.15), 0px 1px 1px 0px rgba(255, 255, 255, 0.15), 0px 0px 3px 0px rgba(255, 255, 255, 0.15);
+    }
+    .mat-focused .mat-form-field-label
+    {
+        color: $white !important;
+    }
+    .mat-input-element:read-only {
+        color: rgba($white, .50) !important;
+    }
+    
+    .mat-input-element {
+        caret-color: $white;
+    }
+    .mat-button-toggle-checked,
+    .mat-bg-primary,
+    .topbar,
+    .chats-wrap .conversations-hold .single-conversation.me .conversation-msg,
+    .fileupload-drop-zone.dz-file-over,
+    .toolbar-avatar.online > .status-dot,
+    .cal-open-day-events,
+    div.hopscotch-bubble {
+        background: map-get($mat-primary, 500) !important;
+        color: $white !important;
+    }
+    .mat-color-primary,
+    .list-item-active,
+    .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret),
+    .sidenav-hold .sidenav li.open > div > a > span:not(.menuitem-badge),
+    .sidenav-hold .sidenav li.open > a > span {
+        color: map-get($mat-primary, 500) !important;
+    }
+    .sidebar-panel .sidebar-list-item.open > .mat-list-item-content > a > span,
+    .sidebar-panel .sidebar-list-item.open .sub-menu .mat-list-item.selected a {
+        font-weight: 500;
+    }
+    .topnav ul.menu > li > div.open > a,
+    .sidebar-panel .sidebar-list-item.open > .mat-list-item-content > .sub-menu,
+    .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret),
+    .list-item-active {
+        border-color: map-get($mat-primary, 100) !important;
+    }
+    .ngx-datatable.material,
+    .messages-wrap .inbox-hold {
+        background: transparent !important;
+    }
+    .sidebar-panel {
+        background: url('../../assets/images/sidebar-bg-dark.jpg') no-repeat;
+    }
+    .bg-dashboard
+    {
+        background: url('../../assets/images/CompanyLogo-Dark.png') center no-repeat;
+        opacity: 0.05;
+    }
+    .bg-toolbar
+    {
+        background: url('../../assets/images/titlebar-bg-dark.jpg') no-repeat; 
+        background-size: cover;
+        background-position: center;
+    }
+
+    .mat-select-panel {
+        background: #2d333c !important;
+        color: $white !important;
+    }
+    .mat-option.mat-selected:not(.mat-option-disabled) {
+        color: $white !important;
+    }
+    .header-topnav,
+    .topnav ul ul,
+    .app-user .app-user-name,
+    .sidebar-panel .sidebar-list-item mat-icon:not(.menu-caret),
+    .ngx-datatable.material *,
+    .ql-snow .ql-picker,
+    .ngx-pagination a, .ngx-pagination button {
+        color: $white;
+    }
+    .text-muted {
+        color: rgba(255, 255, 255, .54) !important;
+    }
+
+    .ql-snow .ql-stroke  {
+        stroke: $white;
+    }
+    .ql-snow .ql-fill {
+        fill: $white;
+    }
+    .ql-toolbar.ql-snow,
+    .ql-toolbar.ql-snow + .ql-container.ql-snow {
+        border-color: gray !important;
+    }
+
+    // .sidebar-panel .navigation-hold,
+    .message-item.open .message-head,
+    .ngx-datatable.material .datatable-header,
+    .bg-white,
+    .cal-month-view .cal-cell-row:hover,
+    .chats-wrap .conversations-hold .single-conversation.sender .conversation-msg,
+    .cal-day-view .cal-hour:nth-child(odd),
+    &.collapsed-menu .sidebar-panel .sidebar-list-item.open .sub-menu,
+    .ngx-pagination a:hover, .ngx-pagination button:hover,
+    .product-container .products-pagination .ngx-pagination .current {
+        background: map-get($mat-primary, 500) !important;
+        color: $white !important;
+    }
+    .mat-autocomplete-panel, 
+    .sidebar-compact ul.submenu,
+    .topnav ul li ul li:hover, 
+    .topnav ul li ul li.open,
+    .default-bg,
+    .default-light-bg {
+        background: #2b2f38;
+        color: $white !important;
+    }
+    .topnav
+    {
+        background: rgba(map-get($mat-primary, 500), .95) !important;
+    }
+    .header-topnav,
+    .topnav ul ul,
+    .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover, 
+    .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group,
+    .cal-month-view .cal-cell-row .cal-cell:hover, .mat-footer-cell, .mat-cell,
+    .cal-month-view .cal-cell.cal-has-events.cal-open,
+    .cal-week-view .cal-day-headers .cal-header:hover, 
+    .cal-week-view .cal-day-headers .cal-drag-over,
+    .cal-day-view .cal-hour-segment:hover, 
+    .cal-day-view .cal-drag-over .cal-hour-segment {
+        background: #1e2021 !important;
+        color: $white !important;
+    }
+    .cal-month-view .cal-day-cell:not(:last-child),
+    .cal-month-view .cal-days,
+    .cal-week-view .cal-day-headers .cal-header:not(:last-child),
+    .cal-week-view .cal-day-headers,
+    .cal-month-view .cal-days .cal-cell-row,
+    .cal-day-view .cal-hour:not(:last-child) .cal-hour-segment, 
+    .cal-day-view .cal-hour:last-child :not(:last-child) .cal-hour-segment {
+        border-color: #000 !important;
+        color: $white !important;
+    }
+
+    /* Hopscotch Tour */ 
+    div.hopscotch-bubble {
+        border-color: $primary-dark;
+    }
+    /* up arrow  */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.up .hopscotch-bubble-arrow-border {
+        border-bottom: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.up .hopscotch-bubble-arrow {
+        border-bottom: 17px solid map-get($mat-primary, 500);
+        top: -16px;
+    }
+    /* right arrow */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.right .hopscotch-bubble-arrow-border {
+        border-left: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.right .hopscotch-bubble-arrow {
+        border-left: 17px solid map-get($mat-primary, 500);
+        left: -1px;
+    }
+    /* bottom arrow */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-arrow-border {
+        border-top: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-arrow {
+        border-top: 17px solid map-get($mat-primary, 500);
+        top: -18px;
+    }
+    /* Left Arrow */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.left .hopscotch-bubble-arrow-border {
+        border-right: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.left .hopscotch-bubble-arrow {
+        left: 1px;
+        border-right: 17px solid map-get($mat-primary, 500);
+    }
+
+    .mat-bg-accent,
+    div.hopscotch-bubble .hopscotch-bubble-number,
+    div.hopscotch-bubble .hopscotch-nav-button.next:hover,
+    div.hopscotch-bubble .hopscotch-nav-button.next {
+        background-color: map-get($mat-accent, 500);
+        color: $white;
+    }
+    .mat-bg-warn {
+        background-color: #f44336;
+        color: $white;
+    }
+    .mat-color-accent {
+        color: map-get($mat-accent, 500);
+    }
+    .mat-color-warn {
+        color: #f44336;
+    }
+    .mat-color-default {
+        color: $white;
+    }
+
+    .fill-color-accent {
+        color: map-get($mat-accent, 500);
+    }
+    .mat-myaccent {
+        color: orange;
+    }
+    .fill-color-warn {
+        color: #f44336;
+    }
+
+    // .ngx-datatable .datatable-footer .datatable-pager .pager .pages.active a {
+    //     color: white !important;
+    //     background: map-get($mat-primary, 500) !important;
+    // }
+
+    .ngx-datatable .datatable-footer .datatable-pager .pager a {
+        color: $white;
+    }
+    .file-box{
+        border: rgba(#fff, .15) solid 1px;
+        background: rgba(#fff, .05) !important;
+      }
+    .image-button
+    {
+      background: #393c3d;
+      box-shadow: 1px 1px 1px -1px rgba(255, 255, 255, 0.15), 
+        0px 1px 1px 0px rgba(255, 255, 255, 0.15),
+        0px 1px 1px 0px rgba(255, 255, 255, 0.15);
+    }
+  
+    .image-button:hover
+    {
+        box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, .7),
+        0px 1px 1px 0px rgba(255, 255, 255, 0.15), 
+        0px 1px 1px 0px rgba(255, 255, 255, 0.15);
+    }
+    .image-button[selected=true]
+    {
+        box-shadow: 0px 0px 0px 5px map-get($mat-primary, 200), 
+        0px 1px 1px 0px  map-get($mat-primary, 500), 
+        0px 1px 1px 0px  map-get($mat-primary, 500);
+    }
+    @media (max-width: 959px) {
+      .default-bg-mobile {
+        background: #424242;
+        color: $white;  
+      }
+    }
+}

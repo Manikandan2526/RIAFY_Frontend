@@ -1,0 +1,79 @@
+<div class="header-topnav mat-elevation-z2">
+  <div class="container bg-toolbar">
+    <div class="topnav">
+      <!-- App Logo -->
+      <div class="topbar-branding">
+        <span style="font-size: 24px; font-weight: 500;">MIKE'S</span>
+      </div>
+
+      <ul class="menu" *ngIf="!layoutConf.isMobile">
+         
+        <li *ngFor="let item of menuItems; let i = index;">
+          <div *ngIf="item.type !== 'separator'" routerLinkActive="open">
+            <a matRipple routerLink="/{{item.state}}" *ngIf="item.type === 'link'">
+              <mat-icon>{{item.icon}}</mat-icon>
+              {{item.name | translate}}
+            </a>
+            <div *ngIf="item.type === 'dropDown'">
+              <label matRipple for="drop-{{i}}" class="toggle">
+                <mat-icon>{{item.icon}}</mat-icon> {{item.name | translate}}
+              </label>
+              <a matRipple>
+                <mat-icon>{{item.icon}}</mat-icon> {{item.name | translate}}
+              </a>
+              <input type="checkbox" id="drop-{{i}}" />
+              <ul>
+                <li *ngFor="let itemLvL2 of item.sub; let j = index;" routerLinkActive="open">
+                  <a matRipple routerLink="{{item.state ? '/'+item.state : ''}}/{{itemLvL2.state}}"
+                    *ngIf="itemLvL2.type !== 'dropDown' && itemLvL2.type !== 'separator'">
+                    <mat-icon *ngIf="itemLvL2.icon">{{itemLvL2.icon}}</mat-icon>
+                    {{itemLvL2.name | translate}}
+                  </a>
+                  <mat-divider *ngIf="itemLvL2.type === 'separator'"></mat-divider>
+
+                  <div *ngIf="itemLvL2.type === 'dropDown'">
+                    <label matRipple for="drop-{{i}}{{j}}" class="toggle">{{itemLvL2.name | translate}}</label>
+                    <a matRipple>
+                      <mat-icon style="margin-left: -22px;" *ngIf="itemLvL2.icon">{{itemLvL2.icon}}</mat-icon>
+                      {{itemLvL2.name | translate}} <mat-icon class="menu-caret">keyboard_arrow_right</mat-icon>
+                    </a>
+                    <input type="checkbox" id="drop-{{i}}{{j}}" />
+                    <!-- Level 3 -->
+                    <ul>
+                      <li *ngFor="let itemLvL3 of itemLvL2.sub" routerLinkActive="open">
+                        <!-- <a matRipple routerLink="{{item.state ? '/'+item.state : ''}}{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}"> -->
+                        <a matRipple routerLink="{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}">
+                          <mat-icon *ngIf="itemLvL3.icon">{{itemLvL3.icon}}</mat-icon>
+                          {{itemLvL3.name | translate}}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+      <span fxFlex></span>
+     
+      <!-- Top left user menu -->
+      <app-customizer></app-customizer>
+      <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right mr-1 img-button">
+        <img src="{{ displayPicturePath }}" alt="">
+      </button>
+      <mat-menu #accountMenu="matMenu">
+              <button mat-menu-item (click)="signOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>{{"SIGN OUT"|translate}}</span>
+        </button>
+      </mat-menu>
+      <!-- Mobile screen menu toggle -->
+      <button mat-icon-button class="mr-1" (click)="toggleSidenav()" *ngIf="layoutConf.isMobile">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</div>

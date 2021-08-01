@@ -1,0 +1,34 @@
+<div class="bg-toolbar">
+  <mat-toolbar class="topbar">
+    <!-- Sidenav toggle button -->
+    <button *ngIf="layoutConf.sidebarStyle !== 'compact'" mat-icon-button id="sidenavToggle" (click)="toggleSidenav()"
+      matTooltip="Toggle Hide/Open">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
+    <span fxFlex></span>
+    <!-- Top left user menu -->
+    <app-customizer></app-customizer>
+    <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right img-button">
+      <img src="{{ displayPicturePath }}" alt="">
+    </button>
+
+    <mat-menu #accountMenu="matMenu">
+      <!-- <button mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>{{"PROFILE"|translate}}</span>
+      </button> -->
+      <!-- <button mat-menu-item (click)="disableNotifications()">
+        <mat-icon>{{IsNotificationsActive=='true'?'notifications_off':'notifications_active'}}</mat-icon>
+        
+        <span>{{IsEnableDisableNotification|translate}}</span>
+       
+      </button> -->
+      <button mat-menu-item (click)="signOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>{{ "SIGN OUT" | translate }}</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

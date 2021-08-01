@@ -1,0 +1,68 @@
+<div>
+
+  <div style="text-align: center;">
+    <span style="font-size: 40px;">The easiest way to buy 
+      and sell stocks</span>
+  </div>
+
+  <div style="text-align: center;">
+    <span style="font-size: 40px;"></span>
+  </div>
+  <div style="text-align: center;">
+    <span style="font-size: 23px;">stock analysis and screening tool for</span>
+  </div>
+  <div style="text-align: center;">
+    <span style="font-size: 23px;">investor in india</span>
+  </div>
+  <form [formGroup]="StockForm" autocomplete="off" style="margin-top: 5px;">
+
+<div fxFlex="100" >
+  <mat-card >
+    <mat-card-content  [style.height.px]="300">
+      <div fxFlex="100" fxLayout="row wrap" > 
+        <div style="vertical-align: top;" fxFlex="40"></div>
+        <div style="vertical-align: top;" fxFlex="60">
+          <input style="vertical-align: middle;margin: 0 auto;         
+          width: 300px;
+          height: 30px;  
+          margin-bottom: 40px;
+          /* z-index: 15; */
+          top: 50%;
+          left: 38%;" matInput placeholder="Stocks" aria-label="Stocks" [matAutocomplete]="auto2"
+            [formControl]="StockForm.controls['StockName']" (focus)="refreshFilterItems()">
+          <mat-autocomplete #auto2="matAutocomplete"  (optionSelected)='setSelectedStock($event.option.value)'>
+            <mat-option *ngFor="let stock of filteredStocks | async" [value]="stock.Name">
+              <span [innerHTML]="stock.Name"></span>
+            </mat-option>
+          </mat-autocomplete>
+      </div> 
+       <div [hidden]="!ShowDetails"  style="font-weight:bold;font-size:20px" fxFlex="100">{{StockName}}</div>
+      <div [hidden]="!ShowDetails" fxFlex="15" >Market Cap</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">₹ {{MarketCap}}</div>
+      <div [hidden]="!ShowDetails"  fxFlex="15">Dividend Yield</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">{{DividendYield}} %</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">Debt to Equity</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">{{DebttoEquity}} %</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">Current Market Price</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">₹ {{CurrentMarketPrice}}</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">ROCE</div>
+      <div [hidden]="!ShowDetails"   style="font-weight:bold" fxFlex="15">{{MarROCEketCap}} %</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">EPS</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">₹ {{MarkeEPStCap}}</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">Stock P/E</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">{{StockPE}} %</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">ROE</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">{{ROE}} %</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">Reserves</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">₹ {{Reserves}}</div>
+      <div [hidden]="!ShowDetails" fxFlex="15">Debt</div>
+      <div [hidden]="!ShowDetails"  style="font-weight:bold" fxFlex="15">₹ {{Debt}}</div>
+    </div>
+
+
+    </mat-card-content>
+  </mat-card>
+</div>
+  </form>
+
+</div>
